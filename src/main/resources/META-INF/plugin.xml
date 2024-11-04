@@ -30,13 +30,20 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        
+        <toolWindow id="开发工具箱"
+            anchor="right"
+            factoryClass="cn.bughub.view.MyToolWindowFactory"
+            secondary="true"/>
     
     </extensions>
+    <!-- action配置信息    -->
     <actions>
-        <action id="MyActionTest" class="cn.bughub.action.MyActionTest" text="MyActionTest"
+        <action id="MyActionTest" class="cn.bughub.action.MyActionTest" text="开发工具箱"
             description="MyActionTestMyActionTestMyActionTestMyActionTestMyActionTestMyActionTestMyActionTestMyActionTestMyActionTest">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <keyboard-shortcut first-keystroke="Alt Z" keymap="$default" second-keystroke=""/>
+<!--            <add-to-group group-id="ToolsMenu" anchor="last"/>-->
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut first-keystroke="ctrl alt t" keymap="$default"/>
         </action>
     </actions>
 </idea-plugin>

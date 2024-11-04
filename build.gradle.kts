@@ -8,7 +8,14 @@ group = "cn.bughub"
 version = "1.0.0"
 
 repositories {
-    mavenCentral()
+    maven {
+        url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
+    }
+    // mavenCentral()
+}
+
+dependencies {
+    implementation("cn.hutool:hutool-all:5.8.32")
 }
 
 // Configure Gradle IntelliJ Plugin
