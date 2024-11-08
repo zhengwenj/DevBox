@@ -10,6 +10,6 @@ public class MyActionTest extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         // 弹窗
-        // Messages.showMessageDialog("Hello bughub!!!", "提示信息", Messages.getInformationIcon());
+        Messages.showMessageDialog("Hello bughub!!!", "提示信息", Messages.getInformationIcon());
     }
 }
