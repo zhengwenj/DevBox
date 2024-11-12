@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * URL参数提取器
+ * URL参数提取面板
  *
  * @author zwj
  * @date 2024-11-06
@@ -27,7 +27,7 @@ public class UrlParamExtractor extends JPanel {
     
     public UrlParamExtractor() {
         setLayout(new BorderLayout());
-        inputArea = new JTextArea("请输入url");
+        inputArea = new JTextArea("");
         inputArea.setForeground(JBColor.GRAY);
         inputArea.setLineWrap(true);
         inputArea.setRows(10);
@@ -60,8 +60,9 @@ public class UrlParamExtractor extends JPanel {
             public void mouseExited(MouseEvent e) {
                 // 鼠标离开时，如果文本区域为空，则恢复提示信息
                 if (inputArea.getText().isEmpty()) {
-                    inputArea.setText("请输入url");
-                    inputArea.setForeground(JBColor.GRAY); // 设置提示信息的颜色
+                    inputArea.setText("");
+                    // 设置提示信息的颜色
+                    inputArea.setForeground(JBColor.GRAY);
                 }
             }
         });

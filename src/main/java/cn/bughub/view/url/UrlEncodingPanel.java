@@ -7,15 +7,21 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * URL编码面板
+ *
+ * @author zwj
+ * @date 2024-11-12
+ */
 public class UrlEncodingPanel extends JPanel {
     
-    private JTextArea inputArea;
+    private final JTextArea inputArea;
     
-    private JTextArea outputArea;
+    private final JTextArea outputArea;
     
-    private JButton encodeButton;
+    private final JButton encodeButton;
     
-    private JButton decodeButton;
+    private final JButton decodeButton;
     
     public UrlEncodingPanel() {
         setLayout(new BorderLayout());

@@ -28,7 +28,7 @@ public class UrlFormatPanel extends JPanel {
     
     public UrlFormatPanel() {
         setLayout(new BorderLayout());
-        inputArea = new JTextArea("请输入url");
+        inputArea = new JTextArea("");
         inputArea.setForeground(JBColor.GRAY);
         inputArea.setLineWrap(true);
         inputArea.setRows(10);
@@ -37,11 +37,11 @@ public class UrlFormatPanel extends JPanel {
         outputArea.setRows(10);
         
         JButton encodeButton = new JButton("URL参数格式化");
-        JButton cleanButton = new JButton("清除");
+        // JButton cleanButton = new JButton("清除");
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(encodeButton);
-        buttonPanel.add(cleanButton);
+        // buttonPanel.add(cleanButton);
         
         add(new JScrollPane(inputArea), BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
@@ -68,7 +68,7 @@ public class UrlFormatPanel extends JPanel {
         });
         // 添加编码和解码的事件监听器
         encodeButton.addActionListener(e -> outputArea.setText(format(inputArea.getText())));
-        cleanButton.addActionListener(e -> inputArea.setText(""));
+        // cleanButton.addActionListener(e -> inputArea.setText(""));
     }
     
     private String format(String input) {

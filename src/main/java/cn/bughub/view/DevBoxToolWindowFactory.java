@@ -20,7 +20,13 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyToolWindowFactory implements ToolWindowFactory {
+/**
+ * 开发工具箱
+ *
+ * @author zwj
+ * @date 2024-11-11
+ */
+public class DevBoxToolWindowFactory implements ToolWindowFactory {
     
     
     @Override
@@ -28,8 +34,9 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         
         JPanel panel = new JPanel(new BorderLayout());
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-        splitPane.setDividerLocation(0.1);
-        
+        splitPane.setDividerLocation(0.2);
+        splitPane.setDividerSize(0);
+        // 顶部面板
         JPanel topPanel = new JPanel(new BorderLayout());
         JButton button = new JButton("更多");
         JBLabel label = new JBLabel();
@@ -37,13 +44,14 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         
         topPanel.add(button, BorderLayout.WEST);
         topPanel.add(label, BorderLayout.CENTER);
-        topPanel.add(searchField, BorderLayout.EAST);
         
+        // 搜索
+        // topPanel.add(searchField, BorderLayout.EAST);
         splitPane.setTopComponent(topPanel);
         
         JPopupMenu popupMenu = new JPopupMenu();
         popupMenu.setBorder(BorderFactory.createEmptyBorder());
-        popupMenu.setPreferredSize(new Dimension(200, 150));
+        popupMenu.setPreferredSize(new Dimension(200, 450));
         
         SidebarMenu sidebarMenu = new SidebarMenu();
         Tree tree = sidebarMenu.createMenuTree();
@@ -66,6 +74,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
             }
         });
         
+        // 底部面板
         JPanel bottomPanel = new JPanel(new BorderLayout());
         splitPane.setBottomComponent(bottomPanel);
         
@@ -92,8 +101,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
             bottomPanel.revalidate();
             bottomPanel.repaint();
         })*/
-        ;
-        
+    
         panel.add(splitPane, BorderLayout.CENTER);
         toolWindow.getComponent().add(panel);
     }
