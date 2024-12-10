@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-    implementation("cn.hutool:hutool-all:5.8.32")
+//    implementation("cn.hutool:hutool-all:5.8.32")
 }
 
 // Configure Gradle IntelliJ Plugin

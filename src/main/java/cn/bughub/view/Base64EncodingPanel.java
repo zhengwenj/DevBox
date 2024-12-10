@@ -1,9 +1,9 @@
 package cn.bughub.view;
 
-import cn.hutool.core.codec.Base64;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Base64;
 
 /**
  * Base64编码面板
@@ -47,13 +47,14 @@ public class Base64EncodingPanel extends JPanel {
         if (input == null) {
             return null;
         }
-        return Base64.encode(input);
+        return Base64.getEncoder().encodeToString(input.getBytes());
     }
     
     private String decode(String base64Input) {
         if (base64Input == null) {
             return null;
         }
-        return Base64.decodeStr(base64Input);
+        byte[] decodedBytes = Base64.getDecoder().decode(base64Input);
+        return new String(decodedBytes);
     }
 }

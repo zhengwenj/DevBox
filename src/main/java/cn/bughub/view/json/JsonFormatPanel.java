@@ -1,6 +1,6 @@
 package cn.bughub.view.json;
 
-import cn.hutool.json.JSONUtil;
+import cn.bughub.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,10 +29,14 @@ public class JsonFormatPanel extends JPanel {
     
     private JButton escapeButton;
     
+    private JButton removeEscapingButton;
+    
     private JButton compressAndEscapeButton;
+    
     private JButton copyButton;
     
     private JButton clearButton;
+    
     public JsonFormatPanel() {
         setLayout(new BorderLayout());
         inputArea = new JTextArea("");
@@ -46,27 +50,26 @@ public class JsonFormatPanel extends JPanel {
         formatButton = new JButton("格式化");
         compressButton = new JButton("压缩");
         escapeButton = new JButton("转义");
+        removeEscapingButton = new JButton("去除转义");
         compressAndEscapeButton = new JButton("压缩并转义");
         
         copyButton = new JButton("复制");
         clearButton = new JButton("清空");
         
-        
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(formatButton);
         buttonPanel.add(compressButton);
         buttonPanel.add(escapeButton);
+        buttonPanel.add(removeEscapingButton);
         buttonPanel.add(compressAndEscapeButton);
         
         JPanel outputButtonPanel = new JPanel();
         outputButtonPanel.add(copyButton);
         outputButtonPanel.add(clearButton);
         
-        
         add(new JScrollPane(inputArea), BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
         // add(new JScrollPane(outputArea), BorderLayout.SOUTH);
-        
         
         JPanel outputPanel = new JPanel();
         outputPanel.setLayout(new BorderLayout());
@@ -78,6 +81,7 @@ public class JsonFormatPanel extends JPanel {
         formatButton.addActionListener(e -> outputArea.setText(format(inputArea.getText())));
         compressButton.addActionListener(e -> outputArea.setText(compressJson(inputArea.getText())));
         escapeButton.addActionListener(e -> outputArea.setText(escapeJson(inputArea.getText())));
+        removeEscapingButton.addActionListener(e -> outputArea.setText(unescapeJson(inputArea.getText())));
         compressAndEscapeButton.addActionListener(e -> outputArea.setText(compressAndEscapeJson(inputArea.getText())));
         copyButton.addActionListener(e -> {
             String selectedText = outputArea.getSelectedText();
@@ -103,7 +107,11 @@ public class JsonFormatPanel extends JPanel {
         if (!StringUtils.isBlank(validResult)) {
             return validResult;
         }
-        return JSONUtil.toJsonPrettyStr(input);
+        String json = JsonUtil.formatJson(input);
+        if (json == null) {
+            return "格式化失败";
+        }
+        return json;
     }
     
     /**
@@ -143,7 +151,18 @@ public class JsonFormatPanel extends JPanel {
         if (!StringUtils.isBlank(validResult)) {
             return validResult;
         }
-        return JSONUtil.quote(input);
+        return JsonUtil.escapeJson(input);
+    }
+    
+    /**
+     * 去除转义
+     *
+     * @param input 输入
+     * @return {@link String }
+     */
+    public static String unescapeJson(String input) {
+        
+        return JsonUtil.unescapeJson(input);
     }
     
     /**

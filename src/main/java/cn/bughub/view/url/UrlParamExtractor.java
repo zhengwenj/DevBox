@@ -1,6 +1,6 @@
 package cn.bughub.view.url;
 
-import cn.hutool.json.JSONUtil;
+import cn.bughub.util.JsonUtil;
 import com.intellij.ui.JBColor;
 
 import javax.swing.*;
@@ -72,7 +72,7 @@ public class UrlParamExtractor extends JPanel {
     }
     
     public static String extractParams(String urlString, String formatType) {
-        Map<String, String> paramMap = new HashMap<>();
+        Map<String, Object> paramMap = new HashMap<>();
         
         try {
             URL url = new URL(urlString);
@@ -96,7 +96,11 @@ public class UrlParamExtractor extends JPanel {
         } catch (Exception e) {
         
         }
-        return JSONUtil.toJsonPrettyStr(paramMap);
+        String json = JsonUtil.formatJson(paramMap);
+        if (json == null) {
+            return "参数提取失败";
+        }
+        return json;
     }
     
     // 格式化键名为指定格式
